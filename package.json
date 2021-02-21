@@ -1,0 +1,50 @@
+{
+    "name": "@vamship/ci-nodejs-container",
+    "version": "0.0.1",
+    "description": "Continuous integration image for node.js projects",
+    "bin": {
+        "": "src/bin/ci-nodejs-container.js"
+    },
+    "scripts": {
+        "clean": "gulp clean",
+        "format": "gulp format",
+        "package": "gulp --series clean format package",
+        "publish": "gulp publish",
+        "all": "gulp --series clean format clean"
+    },
+    "author": "Vamshi K Ponnapalli <vamshi.ponnapalli@gmail.com>",
+    "keywords": ["nodejs","ci"],
+    "license": "MIT",
+    "devDependencies": {
+        "@vamship/build-utils": "0.4.2",
+        "ansi-colors": "^4.1.1",
+        "gulp": "^4.0.2",
+        "mocha": "^8.2.0",
+        "nyc": "^15.1.0"
+    },
+    "dependencies": {
+        "@vamship/error-types": "^1.7.10",
+        "@vamship/logger": "^4.3.1",
+        "bluebird": "^3.7.2",
+        "yargs": "^16.1.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vamship/ci-nodejs-container.git"
+    },
+    "bugs": {
+        "url": "https://github.com/vamship/ci-nodejs-container/issues"
+    },
+    "homepage": "https://github.com/vamship/ci-nodejs-container#readme",
+    "buildMetadata": {
+        "projectType": "container",
+        "language": "js",
+        "docker": {
+            "default": {
+                "repo": "vamship/ci-nodejs",
+                "buildArgs": {
+                }
+            }
+        }
+    }
+}
