@@ -13,7 +13,10 @@
         "all": "gulp --series clean format clean"
     },
     "author": "Vamshi K Ponnapalli <vamshi.ponnapalli@gmail.com>",
-    "keywords": ["nodejs","ci"],
+    "keywords": [
+        "nodejs",
+        "ci"
+    ],
     "license": "MIT",
     "devDependencies": {
         "@vamship/build-utils": "0.4.2",
@@ -42,8 +45,7 @@
         "docker": {
             "default": {
                 "repo": "vamship/ci-nodejs",
-                "buildArgs": {
-                }
+                "buildArgs": {}
             }
         }
     }
