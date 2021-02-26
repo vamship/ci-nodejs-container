@@ -28,8 +28,10 @@ RUN apt-get update \
     && nvm install lts/fermium \
     && nvm alias default lts/fermium \
     && nvm use lts/erbium \
+    && npm install -g npm \
     && npm install -g npm-check-updates \
     && nvm use lts/fermium \
+    && npm install -g npm \
     && npm install -g npm-check-updates
 
 WORKDIR /root
