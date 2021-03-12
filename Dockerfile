@@ -18,12 +18,18 @@ WORKDIR /
 COPY ./_scripts/_bashrc /root/.bashrc
 COPY ./_scripts/_nvmrc /root/.nvmrc
 
+RUN rm /bin/sh \
+    && ln -s /bin/bash /bin/sh \
+    && mkdir -p /usr/local/nvm
+
+ENV NVM_DIR=/usr/local/nvm
+
 RUN apt-get update \
     && apt-get install -y curl \
+    && apt-get -y autoclean \
     && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh \
         | bash \
-    && export NVM_DIR="$HOME/.nvm" \
-    && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
+    && source "$NVM_DIR/nvm.sh" \
     && nvm install lts/erbium \
     && nvm install lts/fermium \
     && nvm alias default lts/fermium \
