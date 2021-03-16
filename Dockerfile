@@ -15,31 +15,28 @@ LABEL org.label-schema.name=$APP_NAME \
 
 WORKDIR /
 
-COPY ./_scripts/_bashrc /root/.bashrc
-COPY ./_scripts/_bash_profile /root/.bash_profile
-COPY ./_scripts/_nvmrc /root/.nvmrc
-
-RUN rm /bin/sh \
-    && ln -s /bin/bash /bin/sh \
-    && mkdir -p /usr/local/nvm
-
 ENV NVM_DIR=/usr/local/nvm
+ENV BASH_ENV=/usr/local/nvm/nvm.sh
 
-RUN apt-get update \
+RUN mkdir -p ${NVM_DIR} \
+    && echo '\. "${NVM_DIR}/nvm.sh"' >> /etc/bash.bashrc \
+    && apt-get update \
     && apt-get install -y curl \
     && apt-get -y autoclean \
     && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh \
         | bash \
-    && source "$NVM_DIR/nvm.sh" \
+    && \. "$NVM_DIR/nvm.sh" \
     && nvm install lts/erbium \
-    && nvm install lts/fermium \
-    && nvm alias default lts/fermium \
     && nvm use lts/erbium \
     && npm install -g npm \
     && npm install -g npm-check-updates \
+    && nvm install lts/fermium \
     && nvm use lts/fermium \
     && npm install -g npm \
-    && npm install -g npm-check-updates
+    && npm install -g npm-check-updates \
+    && nvm alias default lts/fermium
+
+COPY ./_scripts/_nvmrc /.nvmrc
 
 WORKDIR /root
 
