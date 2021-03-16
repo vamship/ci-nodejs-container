@@ -16,6 +16,7 @@ LABEL org.label-schema.name=$APP_NAME \
 WORKDIR /
 
 COPY ./_scripts/_bashrc /root/.bashrc
+COPY ./_scripts/_bash_profile /root/.bash_profile
 COPY ./_scripts/_nvmrc /root/.nvmrc
 
 RUN rm /bin/sh \
