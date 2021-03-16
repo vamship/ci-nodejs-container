@@ -1,6 +1,6 @@
 {
     "name": "@vamship/ci-nodejs-container",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Continuous integration image for node.js projects",
     "scripts": {
         "clean": "gulp clean",
